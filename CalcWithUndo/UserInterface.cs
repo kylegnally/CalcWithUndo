@@ -8,16 +8,24 @@ namespace CalcWithUndo
         private string _outputString;
         private string _menuString;
         private bool _legalString;
+        private bool _firstRun;
 
         public string OutputString { get; set; }
         public bool IsLegalString { get; set; }
 
         public UserInterface()
         {
+            _firstRun = true;
             _inputString = "";
             _outputString = "";
             _menuString = "";
             _legalString = false;
+            BuildMenu(_firstRun);
+        }
+
+        private string BuildMenu(bool firstRun)
+        {
+            throw new NotImplementedException();
         }
 
         public string MakeMainMenu()
@@ -28,7 +36,7 @@ namespace CalcWithUndo
                            "real-literal operation real-literal\n\n" +
                            "You may enter more than one 'operation real-literal'\n" +
                            "sequence wth or without whitespace, like '1 + 6 +77\n\n'" +
-                           "The operators +*-/ are permitted. Yes, that's also a face.\n\n";
+                           "The operators +*-/ are permitted. That's also a face.\n\n";
             return _menuString;
         }
     }
