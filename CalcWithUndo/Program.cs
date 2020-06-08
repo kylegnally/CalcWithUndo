@@ -10,7 +10,10 @@ namespace CalcWithUndo
     {
         static void Main(string[] args)
         {
+            UserInterface aMenu = new UserInterface();
 
+            Console.Write(aMenu.MakeMainMenu());
+            Environment.Exit(0);
         }
     }
 }
