@@ -12,7 +12,7 @@ namespace CalcWithUndo
         {
             UserInterface aMenu = new UserInterface();
 
-            Console.Write(aMenu.MakeMainMenu());
+            Console.Write(aMenu.Menu);
             Environment.Exit(0);
         }
     }

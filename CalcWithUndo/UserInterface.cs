@@ -11,33 +11,55 @@ namespace CalcWithUndo
         private bool _firstRun;
 
         public string OutputString { get; set; }
+        public string Menu
+        {
+            get => _menuString;
+            set => _menuString = value;
+        }
         public bool IsLegalString { get; set; }
+
 
         public UserInterface()
         {
             _firstRun = true;
             _inputString = "";
             _outputString = "";
-            _menuString = "";
             _legalString = false;
             BuildMenu(_firstRun);
         }
 
-        private string BuildMenu(bool firstRun)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string MakeMainMenu()
+        private void BuildMenu(bool firstRun)
         {
             _menuString = "";
-            _menuString += "\t\t*****Calculator with Undo Demo*****\n\n";
-            _menuString += "\t\tPlease enter your equation below like:\n\n" +
-                           "real-literal operation real-literal\n\n" +
-                           "You may enter more than one 'operation real-literal'\n" +
-                           "sequence wth or without whitespace, like '1 + 6 +77\n\n'" +
-                           "The operators +*-/ are permitted. That's also a face.\n\n";
-            return _menuString;
+            if (firstRun) _menuString += MakeWelcome();
+            firstRun = false;
+            _menuString += MakeMenu();
         }
+
+        private string MakeWelcome()
+        {
+            string _welcomeString =  "\t\t*****Calculator with Undo Demo*****\n\n";
+            _welcomeString += "\t\tPlease enter your equation at the prompt like:\n\n" +
+                           "\t\treal-literal operation real-literal\n\n" +
+                           "\t\t These may be entered or without whitespace, like '6 +77' or '34 + 3'.\n\n" +
+                           "\t\tThe operators +*-/ are permitted, and decimal values are allowed.\n\n";
+            return _welcomeString;
+        }
+
+        public string MakeMenu()
+        {
+            string _justMenu = "\t\t********* Calculator Menu *********\n" +
+                               "\t\t*                                 *\n" +
+                               "\t\t*       [E]nter an equation       *\n" +
+                               "\t\t*       [U]ndo prior calculation  *\n" +
+                               "\t\t*       [R]eset the calculator    *\n" +
+                               "\t\t*                                 *\n" +
+                               "\t\t*       [L]eave the program       *\n" +
+                               "\t\t*                                 *\n" +
+                               "\t\t***********************************\n";
+            return _justMenu;
+        }
+
+        
     }
 }
