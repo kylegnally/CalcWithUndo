@@ -62,9 +62,10 @@ namespace CalcWithUndo
             return _justMenu;
         }
 
-        public void EnterQuery()
+        public string EnterQuery()
         {
-            Console.WriteLine("Enter your equation: ");
+            string s = "Enter your equation: ";
+            return s;
         }
     }
 }

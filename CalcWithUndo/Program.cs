@@ -18,8 +18,13 @@ namespace CalcWithUndo
             switch (aMenu.InputString)
             {
                 case "E":
-                    Console.WriteLine(aMenu.EnterQuery);
+                    Console.WriteLine(aMenu.EnterQuery());
                     Regex pattern = new Regex("^\\s*([-+]?)(\\d+)(\\s*([-+*\\/])\\s*((\\s[-+])?([-+]?)\\d+)\\s*)$");
+                    if (pattern.IsMatch(Console.ReadLine()))
+                    {
+                        Console.WriteLine("Matched!");
+                    }
+                    else Console.WriteLine("Not a match!");
                     break;
             }
             Environment.Exit(0);
