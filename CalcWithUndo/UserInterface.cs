@@ -11,6 +11,7 @@ namespace CalcWithUndo
         private bool _firstRun;
 
         public string OutputString { get; set; }
+        public string InputString { get; set; }
         public string Menu
         {
             get => _menuString;
@@ -38,6 +39,7 @@ namespace CalcWithUndo
 
         private string MakeWelcome()
         {
+            Console.Clear();
             string _welcomeString =  "\t\t*****Calculator with Undo Demo*****\n\n";
             _welcomeString += "\t\tPlease enter your equation at the prompt like:\n\n" +
                            "\t\treal-literal operation real-literal\n\n" +
@@ -60,6 +62,9 @@ namespace CalcWithUndo
             return _justMenu;
         }
 
-        
+        public void EnterQuery()
+        {
+            Console.WriteLine("Enter your equation: ");
+        }
     }
 }
