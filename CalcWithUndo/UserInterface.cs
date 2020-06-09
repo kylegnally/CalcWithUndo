@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace CalcWithUndo
 {
@@ -66,6 +67,18 @@ namespace CalcWithUndo
         {
             string s = "Enter your equation: ";
             return s;
+        }
+
+        public void ValidateInput(string s)
+        {
+            _legalString = false;
+            Regex pattern = new Regex("^\\s*([-+]?)(\\d+)(\\s*([-+*\\/])\\s*((\\s[-+])?([-+]?)\\d+)\\s*)$");
+            if (pattern.IsMatch(s))
+            {
+                Console.WriteLine("Matched!");
+                _legalString = true;
+                IsLegalString = _legalString;
+            }
         }
     }
 }

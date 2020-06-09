@@ -19,12 +19,21 @@ namespace CalcWithUndo
             {
                 case "E":
                     Console.WriteLine(aMenu.EnterQuery());
-                    Regex pattern = new Regex("^\\s*([-+]?)(\\d+)(\\s*([-+*\\/])\\s*((\\s[-+])?([-+]?)\\d+)\\s*)$");
-                    if (pattern.IsMatch(Console.ReadLine()))
+                    aMenu.ValidateInput(Console.ReadLine());
+                    if (aMenu.IsLegalString)
                     {
-                        Console.WriteLine("Matched!");
+                        // run it through something like
+                        // aMenu.ProcessString(aMenu.InputString);
+                        // which will break the statement into its
+                        // constituent parts
+
+                        // (#,sign,#)
+
+                        // and then do something like myCalc.Calculate(aMenu.Statement)
+                        // where Statement is an array (?) containing the info needed to 
+                        // describe a whole statement and its result
                     }
-                    else Console.WriteLine("Not a match!");
+
                     break;
             }
             Environment.Exit(0);
