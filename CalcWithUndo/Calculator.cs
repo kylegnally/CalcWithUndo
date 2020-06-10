@@ -10,7 +10,7 @@ namespace CalcWithUndo
 {
     class Calculator
     {
-
+        private string[] state
         private double _leftTerm;
         private double _rightTerm;
         private double _result;
@@ -34,10 +34,10 @@ namespace CalcWithUndo
         public Calculator(string userEntry)
         {
             _userEntry = userEntry;
-            ParseEntry(_userEntry);
+            Calculate(_userEntry);
         }
 
-        private double ParseEntry(string str)
+        private double Calculate(string str)
         {
             double result = Convert.ToDouble(new DataTable().Compute(str, null));
             RunningTotal += result;
