@@ -40,27 +40,8 @@ namespace CalcWithUndo
         private double ParseEntry(string str)
         {
             double result = Convert.ToDouble(new DataTable().Compute(str, null));
+            RunningTotal += result;
             return result;
-            //char[] strArray = new char[str.Length];
-            //strArray = str.ToCharArray();
-            //foreach (char c in strArray)
-            //{
-            //    switch (c.ToString())
-            //    {
-            //        case "+":
-            //            _anOperatorASCII = (int)c;
-            //            break;
-            //        case "-":
-            //            _anOperatorASCII = (int)c;
-            //            break;
-            //        case "*":
-            //            _anOperatorASCII = (int)c;
-            //            break;
-            //        case "/":
-            //            _anOperatorASCII = (int)c;
-            //            break;
-            //    }
-            //}
         }
     }
 }
