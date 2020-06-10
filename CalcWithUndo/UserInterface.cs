@@ -31,7 +31,7 @@ namespace CalcWithUndo
             _menuString = "";
             if (firstRun) _menuString += MakeWelcome();
             firstRun = false;
-            _menuString += MakeMenu();
+            _menuString += MainMenu();
         }
 
         private string MakeWelcome()
@@ -45,15 +45,17 @@ namespace CalcWithUndo
             return _welcomeString;
         }
 
-        public string MakeMenu()
+        public string MainMenu()
         {
             string _justMenu = "\t\t********* Calculator Menu *********\n" +
                                "\t\t*                                 *\n" +
                                "\t\t*       [E]nter an equation       *\n" +
                                "\t\t*       [U]ndo prior calculation  *\n" +
+                               "\t\t*       /*[D]o the next equation*/*\n" +      
                                "\t\t*       [R]eset the calculator    *\n" +
                                "\t\t*                                 *\n" +
                                "\t\t*       [L]eave the program       *\n" +
+                               "\t\t*       [?]elp                :)  *\n" +
                                "\t\t*                                 *\n" +
                                "\t\t***********************************\n";
             return _justMenu;

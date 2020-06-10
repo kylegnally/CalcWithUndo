@@ -8,6 +8,6 @@ namespace CalcWithUndo
 {
     class Caretaker
     {
-        // TODO: code here
+        private GenericStack<IMemento> _mementoStack;
     }
 }

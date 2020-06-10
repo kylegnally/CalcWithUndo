@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="Caretaker.cs" />
+    <Compile Include="GenericStack.cs" />
+    <Compile Include="IGenericStack.cs" />
     <Compile Include="IMemento.cs" />
     <Compile Include="Memento.cs" />
     <Compile Include="Program.cs" />

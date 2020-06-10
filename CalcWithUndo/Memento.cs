@@ -8,16 +8,26 @@ namespace CalcWithUndo
 {
     class Memento : IMemento
     {
-        private string[] _state;
-
         public Memento(string[] state)
         {
-            this._state = state;
+            this.GetState = state;
         }
 
-        public string[] GetState()
+        public string[] GetState { get; set; }
+
+        public string GetEquation()
         {
-            return this._state;
+            return GetState[0];
+        }
+
+        public string GetResult()
+        {
+            return GetState[1];
+        }
+
+        public string GetRunningTotal()
+        {
+            return GetState[2];
         }
     }
 }
