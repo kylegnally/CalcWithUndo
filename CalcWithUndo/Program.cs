@@ -12,6 +12,7 @@ namespace CalcWithUndo
         static void Main(string[] args)
         {
             UserInterface aMenu = new UserInterface();
+            Calculator aCalc;
             // no, but like : while ((Console.ReadKey().Key  != ConsoleKey.L)) Console.Write(aMenu.Menu);
             Console.Write(aMenu.Menu);
             aMenu.InputString = Console.ReadKey().Key.ToString();
@@ -19,10 +20,11 @@ namespace CalcWithUndo
             {
                 case "E":
                     Console.WriteLine(aMenu.EnterQuery());
-                    aMenu.ValidateInput(Console.ReadLine());
-                    if (aMenu.IsLegalString)
+                    string enteredEquation = Console.ReadLine();
+                    if (aMenu.ValidateInput(enteredEquation))
                     {
-                        // run it through something like
+                        
+                        aCalc = new Calculator(enteredEquation);// run it through something like
                         // aMenu.ProcessString(aMenu.InputString);
                         // which will break the statement into its
                         // constituent parts

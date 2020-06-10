@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,9 @@ namespace CalcWithUndo
         public string Result { get; set; }
         public string RunningTotal { get; set; }
 
-        private string _anOperator;
+        private string _userEntry;
+
+        private int _anOperatorASCII;
         private string _aSign;
 
         private double _sum;
@@ -30,7 +33,34 @@ namespace CalcWithUndo
 
         public Calculator(string userEntry)
         {
+            _userEntry = userEntry;
+            ParseEntry(_userEntry);
+        }
 
+        private double ParseEntry(string str)
+        {
+            double result = Convert.ToDouble(new DataTable().Compute(str, null));
+            return result;
+            //char[] strArray = new char[str.Length];
+            //strArray = str.ToCharArray();
+            //foreach (char c in strArray)
+            //{
+            //    switch (c.ToString())
+            //    {
+            //        case "+":
+            //            _anOperatorASCII = (int)c;
+            //            break;
+            //        case "-":
+            //            _anOperatorASCII = (int)c;
+            //            break;
+            //        case "*":
+            //            _anOperatorASCII = (int)c;
+            //            break;
+            //        case "/":
+            //            _anOperatorASCII = (int)c;
+            //            break;
+            //    }
+            //}
         }
     }
 }

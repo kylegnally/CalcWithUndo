@@ -8,7 +8,6 @@ namespace CalcWithUndo
         private string _inputString;
         private string _outputString;
         private string _menuString;
-        private bool _legalString;
         private bool _firstRun;
 
         public string OutputString { get; set; }
@@ -18,15 +17,12 @@ namespace CalcWithUndo
             get => _menuString;
             set => _menuString = value;
         }
-        public bool IsLegalString { get; set; }
-
 
         public UserInterface()
         {
             _firstRun = true;
             _inputString = "";
             _outputString = "";
-            _legalString = false;
             BuildMenu(_firstRun);
         }
 
@@ -69,16 +65,17 @@ namespace CalcWithUndo
             return s;
         }
 
-        public void ValidateInput(string s)
+        public bool ValidateInput(string s)
         {
-            _legalString = false;
             Regex pattern = new Regex("^\\s*([-+]?)(\\d+)(\\s*([-+*\\/])\\s*((\\s[-+])?([-+]?)\\d+)\\s*)$");
             if (pattern.IsMatch(s))
             {
                 Console.WriteLine("Matched!");
-                _legalString = true;
-                IsLegalString = _legalString;
+                return true;
+                //IsLegalString = _legalString;
             }
+
+            return false;
         }
     }
 }
