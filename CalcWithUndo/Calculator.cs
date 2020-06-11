@@ -60,7 +60,17 @@ namespace CalcWithUndo
 
         private double Calculate(string str)
         {
-            double result = Convert.ToDouble(new DataTable().Compute(str, null)); /* :) */
+            // So, about what's going on here. What I'm doing is relying upon the 
+            // .Compute() method of the DataTable class to parse the user's input
+            // once I've validated with the regex pattern present in the UserInterface
+            // class. This DataTable method is able to perfom computations given string
+            // input; essentially, it saves me from writing a duplicating existing functionality. 
+            // Conveniently, the filter for the .Compute() method can be null. Since its 
+            // output can convert to a double, we can simplify all of the code for the math
+            // of the overall problem down into one single, simple, elegant call to a new
+            // object, which we immediately destroy.
+            double result = Convert.ToDouble(new DataTable().Compute(str, null)); 
+            
             _result = result;
             Result = _result.ToString();
             _runningTotal = _runningTotal + _result;
