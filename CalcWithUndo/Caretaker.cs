@@ -31,5 +31,10 @@ namespace CalcWithUndo
             _calculator = calc;
         }
 
+        public IMemento Undo()
+        {
+            return _mementoStack.Pop();
+        }
+
     }
 }

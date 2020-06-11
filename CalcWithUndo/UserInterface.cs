@@ -69,15 +69,14 @@ namespace CalcWithUndo
 
         public bool ValidateInput(string s)
         {
-            //Regex pattern = new Regex("^\\s*([-+]?)(\\d+)(\\s*([-+*\\/])\\s*((\\s[-+])?([-+]?)\\d+)\\s*)$");
-            //if (pattern.IsMatch(s))
-            //{
-                //Console.WriteLine("Matched!");
+            Regex pattern = new Regex("^\\s*([-+]?)(\\d?.?\\d+)(\\s*([-+*\\/])\\s*((\\s[-+])?([-+]?)(\\d?.?\\d+))\\s*)$");
+            if (pattern.IsMatch(s))
+            {
+                Console.WriteLine("Matched!");
                 return true;
-                //IsLegalString = _legalString;
-            //}
+            }
 
-            //return false;
+            return false;
         }
     }
 }

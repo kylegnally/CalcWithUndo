@@ -35,7 +35,7 @@ namespace CalcWithUndo
 
         public Calculator()
         {
-            _runningTotal = 0;
+            if (_runningTotal != 0.00 || _runningTotal != null) _runningTotal = double.Parse(this.State.GetRunningTotal());
             Equation = "";
             Calculate(_userEntry);
         }
@@ -54,6 +54,7 @@ namespace CalcWithUndo
             _state[0] = entry;
             _state[1] = Calculate(entry).ToString();
             _state[2] = RunningTotal.ToString();
+            RunningTotal = _runningTotal.ToString();
             return _state;
         }
 
@@ -62,7 +63,8 @@ namespace CalcWithUndo
             double result = Convert.ToDouble(new DataTable().Compute(str, null)); /* :) */
             _result = result;
             Result = _result.ToString();
-            RunningTotal += result;
+            _runningTotal = _runningTotal + _result;
+            RunningTotal = _runningTotal.ToString();
             return result;
         }
 
