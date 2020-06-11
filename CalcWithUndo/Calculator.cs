@@ -11,18 +11,16 @@ namespace CalcWithUndo
     class Calculator
     {
         private string[] _state;
-        //private double _leftTerm;
-        //private double _rightTerm;
         private double _result;
         private double _runningTotal;
-        public string[] Equation { get; set; }  
+        private string _userEntry;
 
-        //public string LeftTerm { get; set; }
-        //public string RightTerm { get; set; }
+        public string Equation { get; set; }
         public string Result { get; set; }
         public string RunningTotal { get; set; }
 
-        private string _userEntry;
+        public IMemento State { get; set; }
+
 
         //private int _anOperatorASCII;
         //private string _aSign;
@@ -38,29 +36,40 @@ namespace CalcWithUndo
         public Calculator()
         {
             _runningTotal = 0;
+            Equation = "";
             Calculate(_userEntry);
         }
         public Calculator(string userEntry)
         {
             _userEntry = userEntry;
+            Equation = _userEntry;
             _runningTotal = 0;
-            _state[0] = _userEntry;
-            _state[1] = Calculate(_userEntry).ToString();
+            _state = BuildState(userEntry);
+            SaveState(_state);
+        }
+
+        private string[] BuildState(string entry)
+        {
+            _state = new string[3];
+            _state[0] = entry;
+            _state[1] = Calculate(entry).ToString();
             _state[2] = RunningTotal.ToString();
+            return _state;
         }
 
         private double Calculate(string str)
         {
             double result = Convert.ToDouble(new DataTable().Compute(str, null)); /* :) */
+            _result = result;
+            Result = _result.ToString();
             RunningTotal += result;
-            
-
             return result;
         }
 
-        public IMemento Save()
+        public IMemento SaveState(string[] state)
         {
-            return new Memento(this._state);
+            State = new Memento(state);
+            return State;
         }
     }
 }
