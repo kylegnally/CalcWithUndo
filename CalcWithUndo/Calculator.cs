@@ -43,9 +43,9 @@ namespace CalcWithUndo
         {
             _userEntry = userEntry;
             Equation = _userEntry;
-            _runningTotal = 0;
             _state = BuildState(userEntry);
             SaveState(_state);
+            _runningTotal = double.Parse(_state[2]);
         }
 
         private string[] BuildState(string entry)

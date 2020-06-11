@@ -31,6 +31,13 @@ namespace CalcWithUndo
         private static void UserInteraction(UserInterface aMenu)
         {
             Console.Clear();
+
+            if (aCalc != null)
+            {
+                Console.WriteLine("Calculation: " + "\t" + aCalc.Equation + "\n" +
+                                  "Result:      " + "\t" + aCalc.Result + "\n" +
+                                  "TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n");
+            }
             Console.Write(aMenu.Menu);
             aMenu.InputString = Console.ReadKey().Key.ToString();
             switch (aMenu.InputString.ToUpper())
@@ -64,9 +71,6 @@ namespace CalcWithUndo
                 
             }
 
-            Console.WriteLine("Calculation: " + "\t" + aCalc.Equation + "\n" +
-                              "Result:      " + "\t" + aCalc.Result + "\n" +
-                              "TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n");
             UserInteraction(aMenu);
         }
     }
