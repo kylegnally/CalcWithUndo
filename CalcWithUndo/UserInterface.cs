@@ -55,10 +55,9 @@ namespace CalcWithUndo
              *
             */
 
-            Regex pattern = new Regex(@"^((\s*[-+]?(\d+?(\.?\d{0,2})))(\s*[-+*\/]\s*)(\s*[-+]?(\d+?(\.?\d{0,2}))))$");
+            Regex pattern = new Regex(@"^((\s *[-+] ? (\d *? (\.?\d{ 0, 2 })))(\s *[-+*\/]\s *)(\s *[-+] ? (\d *? (\.?\d{ 0,2}))))$");
             if (pattern.IsMatch(s))
             {
-                Console.WriteLine("Matched!");
                 return true;
             }
 
