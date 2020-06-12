@@ -15,14 +15,14 @@ namespace CalcWithUndo
         private Caretaker() { }
         private static Caretaker _instanceCaretaker;
 
-        public static Caretaker GetInstance(Calculator calc)
+        public static Caretaker GetInstance()
         {
             if (_instanceCaretaker == null)
             {
-                _instanceCaretaker = new Caretaker(calc);
+                _instanceCaretaker = new Caretaker();
                 _mementoStack = new GenericStack<IMemento>();
             }
-            _mementoStack.Push(calc.State);
+            _mementoStack.Push();
             return _instanceCaretaker;
         }
 

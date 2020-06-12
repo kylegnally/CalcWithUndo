@@ -14,9 +14,9 @@ namespace CalcWithUndo
         private string _result;
         private string _runningTotal;
 
+
         public Memento(string[] state)
         {
-            this._state = state;
             // do I need these?
             this._equation = state[0];
             this._result = state[1];
@@ -28,19 +28,19 @@ namespace CalcWithUndo
             return this._state;
         }
 
-        public string GetEquation()
-        {
-            return _state[0];
-        }
+        //public string GetEquation()
+        //{
+        //    return _state[0];
+        //}
 
-        public string GetResult()
-        {
-            return _state[1];
-        }
+        //public string GetResult()
+        //{
+        //    return _state[1];
+        //}
 
-        public string GetRunningTotal()
-        {
-            return _state[2];
-        }
+        //public string GetRunningTotal()
+        //{
+        //    return _state[2];
+        //}
     }
 }

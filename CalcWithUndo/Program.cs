@@ -10,18 +10,16 @@ namespace CalcWithUndo
 {
     class Program
     {
-        private static UserInterface aMenu;
-        private static Calculator aCalc;
-        private static Caretaker aCare;
-
         static void Main(string[] args)
         {
             aMenu = new UserInterface();
+            Calculator aCalc = new Calculator();
+            Caretaker aCare = new Caretaker();
 
-            // no, but like : while ((Console.ReadKey().Key  != ConsoleKey.L)) Console.Write(aMenu.Menu);
-            //Calculator aCalc;
-            //Caretaker aCare;
-            UserInteraction(aMenu);
+        // no, but like : while ((Console.ReadKey().Key  != ConsoleKey.L)) Console.Write(aMenu.Menu);
+        //Calculator aCalc;
+        //Caretaker aCare;
+        UserInteraction(aMenu);
             // while (Console.ReadKey().Key != ConsoleKey.Q);
 
 

@@ -13,6 +13,7 @@ namespace CalcWithUndo
         private string[] _state;
         private double _result;
         private double _runningTotal;
+
         private string _userEntry;
 
         public string Equation { get; set; }
@@ -33,19 +34,21 @@ namespace CalcWithUndo
 
         /*      Should this be a Singleton?     */
 
+        //public Calculator()
+        //{
+        //    //if (_runningTotal != 0.00 || _runningTotal != null) _runningTotal = double.Parse(this.State.GetRunningTotal());
+        //    Equation = "";
+        //    Calculate(_userEntry);
+        //}
         public Calculator()
         {
-            if (_runningTotal != 0.00 || _runningTotal != null) _runningTotal = double.Parse(this.State.GetRunningTotal());
-            Equation = "";
-            Calculate(_userEntry);
-        }
-        public Calculator(string userEntry)
-        {
-            _userEntry = userEntry;
-            Equation = _userEntry;
-            _state = BuildState(userEntry);
-            SaveState(_state);
-            _runningTotal = double.Parse(_state[2]);
+            _userEntry = "";
+            _runningTotal = 0;
+            _result = 0;
+            //_userEntry = userEntry;
+            //Equation = _userEntry;
+            //_state = BuildState(userEntry);
+            //_runningTotal = double.Parse(_state[2]);
         }
 
         private string[] BuildState(string entry)
@@ -58,17 +61,20 @@ namespace CalcWithUndo
             return _state;
         }
 
-        private double Calculate(string str)
+        public double Calculate(string str)
         {
             // So, about what's going on here. What I'm doing is relying upon the 
             // .Compute() method of the DataTable class to parse the user's input
             // once I've validated with the regex pattern present in the UserInterface
-            // class. This DataTable method is able to perfom computations given string
-            // input; essentially, it saves me from writing a duplicating existing functionality. 
-            // Conveniently, the filter for the .Compute() method can be null. Since its 
-            // output can convert to a double, we can simplify all of the code for the math
-            // of the overall problem down into one single, simple, elegant call to a new
-            // object, which we immediately destroy.
+            // class. This DataTable method is able to perform computations given string
+            // input; essentially, it saves me from writing a parser and duplicating
+            // existing functionality. 
+
+            // Conveniently, the filter for the .Compute() method can be null. Also
+            // conveniently, the operation appears to trim any whitespace automatically.
+            // Since its output can convert to a double, I can simplify all of the code
+            // for the math of the overall calculation problem down into one single,
+            // simple, elegant call to a new object which the garbage collector will  destroy.
             double result = Convert.ToDouble(new DataTable().Compute(str, null)); 
             
             _result = result;

@@ -69,14 +69,22 @@ namespace CalcWithUndo
 
         public bool ValidateInput(string s)
         {
-            Regex pattern = new Regex("^\\s*([-+]?)(\\d?.?\\d+)(\\s*([-+*\\/])\\s*((\\s[-+])?([-+]?)(\\d?.?\\d+))\\s*)$");
-            if (pattern.IsMatch(s))
-            {
-                Console.WriteLine("Matched!");
+            /*  Broken down, here's what we're doing:
+            
+                ^\s*([-+]?)                         "Match any amount of whitespace followed by an optional sign"
+                (\d+(\.\d{0,2}+)?)(\s*([-+*\/])\s*  "Match any digit, followed by an optional decimal value up to 
+                                                    two digits long, followed by a required *, -, *, or / sign"
+                
+            //
+            */
+            //Regex pattern = new Regex("^\\s*([-+]?)(\\d+(\\.\\d{0,2}+)?)(\\s*([-+*\\/])\\s*((\\s[-+])?([-+]?)(\\d+(\\.\\d{0,2}+)?)\\s*))$");
+            //if (pattern.IsMatch(s))
+            //{
+            //    Console.WriteLine("Matched!");
                 return true;
-            }
+            //}
 
-            return false;
+            //return false;
         }
     }
 }

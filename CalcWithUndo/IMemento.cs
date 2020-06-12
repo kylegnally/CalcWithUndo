@@ -9,9 +9,9 @@ namespace CalcWithUndo
     public interface IMemento
     {
         string[] GetState();
-        string GetResult();
+        //string GetResult();
 
-        string GetEquation();
-        string GetRunningTotal();
+        //string GetEquation();
+        //string GetRunningTotal();
     }
 }
