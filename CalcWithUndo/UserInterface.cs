@@ -35,16 +35,9 @@ namespace CalcWithUndo
 
         public string MainMenu()
         {
-            string _justMenu = "\t\t********* Calculator Menu *********\n" +
-                               "\t\t*                                 *\n" +
-                               "\t\t*       [E]nter an equation       *\n" +
-                               "\t\t*       [U]ndo prior calculation  *\n" +    
-                               "\t\t*       [C]lear the calculator    *\n" +
-                               "\t\t*                                 *\n" +
-                               "\t\t*       [L]eave the program       *\n" +
-                               "\t\t*       [?]elp                :)  *\n" +
-                               "\t\t*                                 *\n" +
-                               "\t\t***********************************\n";
+            string _justMenu = "Enter an equation and press the <Enter> key to perform a computation\n" +
+                               "or enter any of the following options by themselves:\n" + 
+                               "[U]ndo [C]lear [Q]uit [H]elp";
             return _justMenu;
         }
 
@@ -56,22 +49,20 @@ namespace CalcWithUndo
 
         public bool ValidateInput(string s)
         {
-            /*  Broken down, here's what we're doing:
-            
-                ^\s*([-+]?)                         "Match any amount of whitespace followed by an optional sign"
-                (\d+(\.\d{0,2}+)?)(\s*([-+*\/])\s*  "Match any digit, followed by an optional decimal value up to 
-                                                    two digits long, followed by a required *, -, *, or / sign"
-                
-            //
+            /*
+             *
+             *  See the design document for a breakdown on the workings of this monster.
+             *
             */
-            //Regex pattern = new Regex("^\\s*([-+]?)(\\d+(\\.\\d{0,2}+)?)(\\s*([-+*\\/])\\s*((\\s[-+])?([-+]?)(\\d+(\\.\\d{0,2}+)?)\\s*))$");
-            //if (pattern.IsMatch(s))
-            //{
-            //    Console.WriteLine("Matched!");
-                return true;
-            //}
 
-            //return false;
+            Regex pattern = new Regex(@"^((\s*[-+]?(\d+?(\.?\d{0,2})))(\s*[-+*\/]\s*)(\s*[-+]?(\d+?(\.?\d{0,2}))))$");
+            if (pattern.IsMatch(s))
+            {
+                Console.WriteLine("Matched!");
+                return true;
+            }
+
+            return false;
         }
 
         public string PrintState(string str)

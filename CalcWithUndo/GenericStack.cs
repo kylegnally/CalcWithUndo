@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CalcWithUndo
+﻿namespace CalcWithUndo
 {
     class GenericStack<T> : IGenericStack<T>
     {

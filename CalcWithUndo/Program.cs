@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace CalcWithUndo
 {
@@ -16,8 +10,6 @@ namespace CalcWithUndo
         static Caretaker aCare = Caretaker.GetInstance();
         static void Main(string[] args)
         {
-            
-        
             UserInteraction();
             Environment.Exit(0);
         }
@@ -36,14 +28,6 @@ namespace CalcWithUndo
             aMenu.InputString = Console.ReadKey().Key.ToString();
             switch (aMenu.InputString.ToUpper())
             {
-                case "E":
-                    Console.WriteLine(aMenu.EnterQuery());
-                    string enteredEquation = Console.ReadLine();
-                    if (aMenu.ValidateInput(enteredEquation))
-                    {
-                        aCalc.Calculate(enteredEquation); 
-                    }
-                    break;
                 case "R":
                     Console.WriteLine("Resetting...");
                     ResetAll();
@@ -67,6 +51,14 @@ namespace CalcWithUndo
                 case "Q":
                     Console.WriteLine("Leaving program.");
                     Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine(aMenu.EnterQuery());
+                    string enteredEquation = Console.ReadLine();
+                    if (aMenu.ValidateInput(enteredEquation))
+                    {
+                        aCalc.Calculate(enteredEquation);
+                    }
                     break;
             }
 
