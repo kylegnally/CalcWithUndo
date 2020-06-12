@@ -40,7 +40,7 @@ namespace CalcWithUndo
 
         public void Reset()
         {
-            _mementoStack = null;
+            _mementoStack = new GenericStack<IMemento>();
             _instanceCaretaker = null;
         }
     }

@@ -28,8 +28,10 @@ namespace CalcWithUndo
 
             if (aCalc.State != null)
             {
+                aCare.Add(aCalc.State);
                 Console.WriteLine(aMenu.PrintState(aCalc.State.GetState()));
             }
+
             Console.Write(aMenu.Menu);
             aMenu.InputString = Console.ReadKey().Key.ToString();
             switch (aMenu.InputString.ToUpper())
@@ -40,19 +42,25 @@ namespace CalcWithUndo
                     if (aMenu.ValidateInput(enteredEquation))
                     {
                         aCalc.Calculate(enteredEquation); 
-                        aCare.Add(aCalc.State);                    }
+                    }
                     break;
                 case "R":
+                    Console.WriteLine("Resetting...");
                     ResetAll();
+                    Thread.Sleep(2000);
                     break;
                 case "U":
                     {
-                        Console.WriteLine("Undoing last operation.");
-                        aCalc.State = aCare.Undo();
                         if (aCare.Undo() == null)
                         {
                             Console.WriteLine("\nNothing to undo!\n");
-                            Thread.Sleep(500);
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nUndoing last operation.");
+                            aCalc.State = aCare.Undo();
+                            Thread.Sleep(2000);
                         }
                     }
                     break;
