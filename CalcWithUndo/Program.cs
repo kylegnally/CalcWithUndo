@@ -25,14 +25,14 @@ namespace CalcWithUndo
         private static void UserInteraction()
         {
             Console.Clear();
+            Console.Write(aMenu.Menu);
 
             if (aCalc.State != null)
             {
                 aCare.Add(aCalc.State);
-                Console.WriteLine(aMenu.PrintState(aCalc.State.GetState()));
+                Console.WriteLine("\n\n" + aMenu.PrintState(aCalc.State.GetState()) + "\n\n");
             }
 
-            Console.Write(aMenu.Menu);
             aMenu.InputString = Console.ReadKey().Key.ToString();
             switch (aMenu.InputString.ToUpper())
             {
@@ -68,8 +68,6 @@ namespace CalcWithUndo
                     Console.WriteLine("Leaving program.");
                     Environment.Exit(0);
                     break;
-
-                
             }
 
             UserInteraction();

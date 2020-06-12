@@ -39,7 +39,7 @@ namespace CalcWithUndo
                                "\t\t*                                 *\n" +
                                "\t\t*       [E]nter an equation       *\n" +
                                "\t\t*       [U]ndo prior calculation  *\n" +    
-                               "\t\t*       [R]eset the calculator    *\n" +
+                               "\t\t*       [C]lear the calculator    *\n" +
                                "\t\t*                                 *\n" +
                                "\t\t*       [L]eave the program       *\n" +
                                "\t\t*       [?]elp                :)  *\n" +
@@ -50,7 +50,7 @@ namespace CalcWithUndo
 
         public string EnterQuery()
         {
-            string s = "Enter your equation: ";
+            string s = "\n\nEnter your equation: ";
             return s;
         }
 
