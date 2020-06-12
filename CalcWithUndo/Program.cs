@@ -11,17 +11,18 @@ namespace CalcWithUndo
 {
     class Program
     {
+        static UserInterface aMenu = new UserInterface();
+        static Calculator aCalc = new Calculator();
+        static Caretaker aCare = Caretaker.GetInstance();
         static void Main(string[] args)
         {
-            UserInterface aMenu = new UserInterface();
-            Calculator aCalc = new Calculator();
-            Caretaker aCare = Caretaker.GetInstance();
+            
         
-            UserInteraction(aMenu, aCalc, aCare);
+            UserInteraction();
             Environment.Exit(0);
         }
 
-        private static void UserInteraction(UserInterface aMenu, Calculator aCalc, Caretaker aCare)
+        private static void UserInteraction()
         {
             Console.Clear();
 
@@ -40,6 +41,9 @@ namespace CalcWithUndo
                     {
                         aCalc.Calculate(enteredEquation); 
                         aCare.Add(aCalc.State);                    }
+                    break;
+                case "R":
+                    ResetAll();
                     break;
                 case "U":
                     {
@@ -60,7 +64,13 @@ namespace CalcWithUndo
                 
             }
 
-            UserInteraction(aMenu, aCalc, aCare);
+            UserInteraction();
+        }
+
+        private static void ResetAll()
+        {
+            aCalc.Reset();
+            aCare.Reset();
         }
     }
 }

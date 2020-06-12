@@ -9,9 +9,9 @@ namespace CalcWithUndo
     class Caretaker
     {
         private static GenericStack<IMemento> _mementoStack;
+        private static Caretaker _instanceCaretaker;
 
         private Caretaker() { }
-        private static Caretaker _instanceCaretaker;
 
         public static Caretaker GetInstance()
         {
@@ -23,16 +23,25 @@ namespace CalcWithUndo
             return _instanceCaretaker;
         }
 
-        // add method for caretaker
         public void Add(IMemento memento)
         {
             _mementoStack.Push(memento);
         }
 
-        // Get method for the caretaker
         public IMemento Undo()
         {
             return _mementoStack.Pop();
+        }
+
+        public IMemento Peek()
+        {
+            return _mementoStack.Peek();
+        }
+
+        public void Reset()
+        {
+            _mementoStack = null;
+            _instanceCaretaker = null;
         }
     }
 }

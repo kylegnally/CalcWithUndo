@@ -46,5 +46,12 @@ namespace CalcWithUndo
             size--;
             return returnData;
         }
+
+        public T Peek()
+        {
+            T returnData;
+            returnData = head.Data;
+            return returnData;
+        }
     }
 }

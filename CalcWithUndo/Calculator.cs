@@ -68,6 +68,14 @@ namespace CalcWithUndo
             // return _result;
         }
 
+        public void Reset()
+        {
+            State = null;
+            _runningTotal = 0;
+            _result = 0;
+            _state = "";
+        }
+
         public void SaveState(string state)
         {
             State = new Memento(state);
