@@ -23,26 +23,14 @@ namespace CalcWithUndo
             _firstRun = true;
             _inputString = "";
             _outputString = "";
-            BuildMenu(_firstRun);
+            BuildMenu();
         }
 
-        private void BuildMenu(bool firstRun)
+        private void BuildMenu()
         {
             _menuString = "";
-            if (firstRun) _menuString += MakeWelcome();
-            firstRun = false;
-            _menuString += MainMenu();
-        }
-
-        private string MakeWelcome()
-        {
-            Console.Clear();
-            string _welcomeString =  "\t\t*****Calculator with Undo Demo*****\n\n";
-            _welcomeString += "\t\tPlease enter your equation at the prompt like:\n\n" +
-                           "\t\treal-literal operation real-literal\n\n" +
-                           "\t\t These may be entered or without whitespace, like '6 +77' or '34 + 3'.\n\n" +
-                           "\t\tThe operators +*-/ are permitted, and decimal values are allowed.\n\n";
-            return _welcomeString;
+            _menuString = MainMenu();
+            Menu = _menuString;
         }
 
         public string MainMenu()
@@ -50,8 +38,7 @@ namespace CalcWithUndo
             string _justMenu = "\t\t********* Calculator Menu *********\n" +
                                "\t\t*                                 *\n" +
                                "\t\t*       [E]nter an equation       *\n" +
-                               "\t\t*       [U]ndo prior calculation  *\n" +
-                               "\t\t*       /*[D]o the next equation*/*\n" +      
+                               "\t\t*       [U]ndo prior calculation  *\n" +    
                                "\t\t*       [R]eset the calculator    *\n" +
                                "\t\t*                                 *\n" +
                                "\t\t*       [L]eave the program       *\n" +

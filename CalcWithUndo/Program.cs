@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CalcWithUndo
@@ -15,13 +16,8 @@ namespace CalcWithUndo
             UserInterface aMenu = new UserInterface();
             Calculator aCalc = new Calculator();
             Caretaker aCare = Caretaker.GetInstance();
-        // no, but like : while ((Console.ReadKey().Key  != ConsoleKey.L)) Console.Write(aMenu.Menu);
-        //Calculator aCalc;
-        //Caretaker aCare;
-        UserInteraction(aMenu, aCalc, aCare);
-            // while (Console.ReadKey().Key != ConsoleKey.Q);
-
-
+        
+            UserInteraction(aMenu, aCalc, aCare);
             Environment.Exit(0);
         }
 
@@ -31,7 +27,6 @@ namespace CalcWithUndo
 
             if (aCalc.State != null)
             {
-                //Console.WriteLine("TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n");
                 Console.WriteLine(aMenu.PrintState(aCalc.State.GetState()));
             }
             Console.Write(aMenu.Menu);
@@ -47,19 +42,18 @@ namespace CalcWithUndo
                         aCare.Add(aCalc.State);                    }
                     break;
                 case "U":
-                    Console.WriteLine("Undoing last operation.");
-                    //Console.WriteLine("\n\nUNDOING LAST OPERATION\n\nCHANGING STATE FROM::" +
-                    //                  "Calculation: " + "\t" + aCalc.Equation + "\n" +
-                    //                  "Result:      " + "\t" + aCalc.Result + "\n" +
-                    //                  "TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n");
-                    aCalc.State = aCare.Undo();
-                    //Console.WriteLine("\nTO:\n\n" +
-                    //                  "Calculation: " + "\t" + aCalc.Equation + "\n" +
-                    //                  "Result:      " + "\t" + aCalc.Result + "\n" +
-                    //                  "TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n + " +
-                    //                  "UNDO COMPLETE.");
+                    {
+                        Console.WriteLine("Undoing last operation.");
+                        aCalc.State = aCare.Undo();
+                        if (aCare.Undo() == null)
+                        {
+                            Console.WriteLine("\nNothing to undo!\n");
+                            Thread.Sleep(500);
+                        }
+                    }
                     break;
                 case "Q":
+                    Console.WriteLine("Leaving program.");
                     Environment.Exit(0);
                     break;
 
