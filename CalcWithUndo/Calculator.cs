@@ -10,15 +10,11 @@ namespace CalcWithUndo
 {
     class Calculator
     {
-        private string[] _state;
+        private string _state;
         private double _result;
         private double _runningTotal;
-
-        private string _userEntry;
-
-        public string Equation { get; set; }
-        public string Result { get; set; }
-        public string RunningTotal { get; set; }
+        public string RunningTotal { get; private set; }
+        public string Result { get; private set; }
 
         public IMemento State { get; set; }
 
@@ -42,27 +38,14 @@ namespace CalcWithUndo
         //}
         public Calculator()
         {
-            _userEntry = "";
             _runningTotal = 0;
             _result = 0;
-            //_userEntry = userEntry;
-            //Equation = _userEntry;
-            //_state = BuildState(userEntry);
-            //_runningTotal = double.Parse(_state[2]);
         }
 
-        private string[] BuildState(string entry)
+        public void Calculate(string str)
         {
-            _state = new string[3];
-            _state[0] = entry;
-            _state[1] = Calculate(entry).ToString();
-            _state[2] = RunningTotal.ToString();
-            RunningTotal = _runningTotal.ToString();
-            return _state;
-        }
 
-        public double Calculate(string str)
-        {
+            State = null;
             // So, about what's going on here. What I'm doing is relying upon the 
             // .Compute() method of the DataTable class to parse the user's input
             // once I've validated with the regex pattern present in the UserInterface
@@ -75,19 +58,19 @@ namespace CalcWithUndo
             // Since its output can convert to a double, I can simplify all of the code
             // for the math of the overall calculation problem down into one single,
             // simple, elegant call to a new object which the garbage collector will  destroy.
-            double result = Convert.ToDouble(new DataTable().Compute(str, null)); 
-            
-            _result = result;
-            Result = _result.ToString();
+            _result = Convert.ToDouble(new DataTable().Compute(str, null));
             _runningTotal = _runningTotal + _result;
+            _state = str + "|" + _result + "|" + _runningTotal;
+            //sult = _result.ToString();
             RunningTotal = _runningTotal.ToString();
-            return result;
+            SaveState(_state);
+            Result = _result.ToString();
+            // return _result;
         }
 
-        public IMemento SaveState(string[] state)
+        public void SaveState(string state)
         {
             State = new Memento(state);
-            return State;
         }
     }
 }

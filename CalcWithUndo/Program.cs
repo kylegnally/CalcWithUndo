@@ -12,29 +12,27 @@ namespace CalcWithUndo
     {
         static void Main(string[] args)
         {
-            aMenu = new UserInterface();
+            UserInterface aMenu = new UserInterface();
             Calculator aCalc = new Calculator();
-            Caretaker aCare = new Caretaker();
-
+            Caretaker aCare = Caretaker.GetInstance();
         // no, but like : while ((Console.ReadKey().Key  != ConsoleKey.L)) Console.Write(aMenu.Menu);
         //Calculator aCalc;
         //Caretaker aCare;
-        UserInteraction(aMenu);
+        UserInteraction(aMenu, aCalc, aCare);
             // while (Console.ReadKey().Key != ConsoleKey.Q);
 
 
             Environment.Exit(0);
         }
 
-        private static void UserInteraction(UserInterface aMenu)
+        private static void UserInteraction(UserInterface aMenu, Calculator aCalc, Caretaker aCare)
         {
             Console.Clear();
 
-            if (aCalc != null)
+            if (aCalc.State != null)
             {
-                Console.WriteLine("Calculation: " + "\t" + aCalc.Equation + "\n" +
-                                  "Result:      " + "\t" + aCalc.Result + "\n" +
-                                  "TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n");
+                //Console.WriteLine("TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n");
+                Console.WriteLine(aMenu.PrintState(aCalc.State.GetState()));
             }
             Console.Write(aMenu.Menu);
             aMenu.InputString = Console.ReadKey().Key.ToString();
@@ -45,22 +43,21 @@ namespace CalcWithUndo
                     string enteredEquation = Console.ReadLine();
                     if (aMenu.ValidateInput(enteredEquation))
                     {
-
-                        aCalc = new Calculator(enteredEquation); // run it through something like
-                        aCare = Caretaker.GetInstance(aCalc);
-                    }
+                        aCalc.Calculate(enteredEquation); 
+                        aCare.Add(aCalc.State);                    }
                     break;
                 case "U":
-                    Console.WriteLine("\n\nUNDOING LAST OPERATION\n\nCHANGING STATE FROM::" +
-                                      "Calculation: " + "\t" + aCalc.Equation + "\n" +
-                                      "Result:      " + "\t" + aCalc.Result + "\n" +
-                                      "TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n");
+                    Console.WriteLine("Undoing last operation.");
+                    //Console.WriteLine("\n\nUNDOING LAST OPERATION\n\nCHANGING STATE FROM::" +
+                    //                  "Calculation: " + "\t" + aCalc.Equation + "\n" +
+                    //                  "Result:      " + "\t" + aCalc.Result + "\n" +
+                    //                  "TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n");
                     aCalc.State = aCare.Undo();
-                    Console.WriteLine("\nTO:\n\n" +
-                                      "Calculation: " + "\t" + aCalc.Equation + "\n" +
-                                      "Result:      " + "\t" + aCalc.Result + "\n" +
-                                      "TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n + " +
-                                      "UNDO COMPLETE.");
+                    //Console.WriteLine("\nTO:\n\n" +
+                    //                  "Calculation: " + "\t" + aCalc.Equation + "\n" +
+                    //                  "Result:      " + "\t" + aCalc.Result + "\n" +
+                    //                  "TOTAL TO NOW:" + "\t" + aCalc.RunningTotal + "\n\n + " +
+                    //                  "UNDO COMPLETE.");
                     break;
                 case "Q":
                     Environment.Exit(0);
@@ -69,7 +66,7 @@ namespace CalcWithUndo
                 
             }
 
-            UserInteraction(aMenu);
+            UserInteraction(aMenu, aCalc, aCare);
         }
     }
 }

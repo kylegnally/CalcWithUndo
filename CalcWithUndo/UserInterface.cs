@@ -86,5 +86,15 @@ namespace CalcWithUndo
 
             //return false;
         }
+
+        public string PrintState(string str)
+        {
+            string printableState;
+            string[] deconstructedString = str.Split('|');
+            printableState = "EQUATION:\t" + deconstructedString[0] + "\n" +
+                             "RESULT:\t" + deconstructedString[1] + "\n" + 
+                             "RUNNING TOTAL:\t" + deconstructedString[2];
+            return printableState;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace CalcWithUndo
 {
     public interface IMemento
     {
-        string[] GetState();
+        string GetState();
         //string GetResult();
 
         //string GetEquation();
