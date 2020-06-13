@@ -9,15 +9,15 @@ namespace CalcWithUndo
 {
     class Program
     {
-        private static ResourceManager rm = new ResourceManager("CalcWithUndo.strings", Assembly.GetExecutingAssembly());
-
         static UserInterface aMenu = new UserInterface();
         static Calculator aCalc = new Calculator();
         static Caretaker aCare = Caretaker.GetInstance();
+
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            ResourceManager rm = new ResourceManager("CalcWithUndo.strings", Assembly.GetExecutingAssembly());
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr");
             Console.WriteLine();
             UserInteraction();
             Environment.Exit(0);
