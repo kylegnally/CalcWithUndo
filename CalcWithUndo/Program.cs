@@ -9,7 +9,7 @@ namespace CalcWithUndo
 {
     class Program
     {
-        private static ResourceManager rm = new ResourceManager("CalcWithUndo.strings", Assembly.Load("CalcWithUndo"));
+        private static ResourceManager rm = new ResourceManager("CalcWithUndo.strings", Assembly.GetExecutingAssembly());
 
         static UserInterface aMenu = new UserInterface();
         static Calculator aCalc = new Calculator();
