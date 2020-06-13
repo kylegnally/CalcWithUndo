@@ -1,5 +1,8 @@
 ﻿namespace CalcWithUndo
 {
+    /// <summary>
+    /// Memento interface.
+    /// </summary>
     public interface IMemento
     {
         string GetState();

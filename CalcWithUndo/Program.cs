@@ -12,7 +12,10 @@ namespace CalcWithUndo
         static UserInterface aMenu = new UserInterface();
         static Calculator aCalc = new Calculator();
         static Caretaker aCare = Caretaker.GetInstance();
-
+        /// <summary>
+        /// Entry point.
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -23,9 +26,11 @@ namespace CalcWithUndo
             Environment.Exit(0);
         }
 
+        /// <summary>
+        /// User interaction method. Recursive; calls itself.
+        /// </summary>
         private static void UserInteraction()
         {
-            Console.Clear();
             Console.Write(aMenu.Menu);
 
             if (aCalc.State != null)
@@ -61,7 +66,7 @@ namespace CalcWithUndo
                     Console.WriteLine("Leaving program.");
                     Environment.Exit(0);
                     break;
-                default:
+                case "E":
                     Console.WriteLine(aMenu.EnterQuery());
                     string enteredEquation = Console.ReadLine();
                     if (aMenu.ValidateInput(enteredEquation))
@@ -74,6 +79,9 @@ namespace CalcWithUndo
             UserInteraction();
         }
 
+        /// <summary>
+        /// Reset method for Calculator and Caretaker classes.
+        /// </summary>
         private static void ResetAll()
         {
             aCalc.Reset();
